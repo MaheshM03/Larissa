@@ -43,70 +43,69 @@ export default function Amenities() {
     container: {
       maxWidth: '1200px',
       margin: '0 auto',
-      padding: '40px 20px',
-      flex: 1,
-      marginTop:'20px',
+      padding: '50px 20px 40px',
+      flex: 1
     },
     heading: {
       fontFamily: "'Playfair Display', serif",
-      fontSize: '2rem',
+      fontSize: '2.4rem',
       textAlign: 'center',
-      color: '#3d2e2e',
-      marginBottom: '30px'
+      color: '#3c2a21',
+      marginBottom: '40px',
+      marginTop:'60px'
     },
     tabs: {
       display: 'flex',
       justifyContent: 'center',
       marginBottom: '40px',
+      flexWrap: 'wrap',
       gap: '20px'
     },
     tabButton: (active) => ({
-      padding: '10px 20px',
-      borderRadius: '20px',
-      border: 'none',
+      padding: '12px 28px',
+      borderRadius: '30px',
+      border: '2px solid #b08968',
       fontSize: '1rem',
       cursor: 'pointer',
-      backgroundColor: active ? '#b08968' : '#e0dcd7',
-      color: active ? '#fff' : '#333',
+      backgroundColor: active ? '#b08968' : 'transparent',
+      color: active ? '#fff' : '#3c2a21',
+      fontWeight: 'bold',
       transition: 'all 0.3s ease'
     }),
     grid: {
-      display: 'flex',
-      flexWrap: 'wrap',
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
       gap: '24px',
       justifyContent: 'center',
-      marginBottom: '60px'
+      alignItems: 'center'
     },
     card: {
-      width: '160px',
       backgroundColor: '#fff',
       borderRadius: '16px',
-      padding: '20px',
+      padding: '24px',
       textAlign: 'center',
-      boxShadow: '0 8px 16px rgba(0, 0, 0, 0.08)',
+      boxShadow: '0 6px 16px rgba(0, 0, 0, 0.1)',
       transition: 'transform 0.3s ease, box-shadow 0.3s ease'
     },
-    cardHover: {
-      transform: 'translateY(-6px)',
-      boxShadow: '0 14px 28px rgba(0, 0, 0, 0.12)'
-    },
     icon: {
-      fontSize: '2rem',
-      marginBottom: '10px'
+      fontSize: '2.2rem',
+      marginBottom: '12px'
     },
     name: {
       fontSize: '1rem',
       fontWeight: '500',
-      color: '#555'
-    },
-    '@media(max-width: 480px)': {
-      card: { width: '100%', maxWidth: '300px' }
+      color: '#5e5e5e'
     }
   };
 
   const renderAmenities = (amenities) =>
     amenities.map((item, index) => (
-      <div className="amenity-card" key={index} data-aos="fade-up" style={styles.card}>
+      <div
+        className="amenity-card"
+        key={index}
+        data-aos="fade-up"
+        style={styles.card}
+      >
         <div style={styles.icon}>{item.icon}</div>
         <div style={styles.name}>{item.name}</div>
       </div>
@@ -118,14 +117,13 @@ export default function Amenities() {
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap');
 
         .amenity-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.12);
+          transform: scale(1.05);
+          box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);
         }
 
         @media (max-width: 480px) {
           .amenity-card {
-            width: 100% !important;
-            max-width: 300px !important;
+            padding: 20px;
           }
         }
       `}</style>

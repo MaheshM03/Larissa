@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import Footer from './Footer';
+import { motion } from 'framer-motion';
+import { FaStar } from 'react-icons/fa';
 
 export default function Reviews() {
   const [reviews, setReviews] = useState([
@@ -28,29 +30,6 @@ export default function Reviews() {
       rating: 5.0
     }
   ]);
-
-  const [newReview, setNewReview] = useState({
-    type: 'Resort',
-    name: '',
-    review: '',
-    rating: ''
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setNewReview(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const ratingNum = parseFloat(newReview.rating);
-    if (!newReview.name || !newReview.review || isNaN(ratingNum)) {
-      alert("Please fill in all fields with valid values.");
-      return;
-    }
-    setReviews(prev => [...prev, { ...newReview, rating: ratingNum }]);
-    setNewReview({ type: 'Resort', name: '', review: '', rating: '' });
-  };
 
   return (
     <>
@@ -82,8 +61,14 @@ export default function Reviews() {
 
         .review-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          grid-template-columns: repeat(2, 1fr);
           gap: 25px;
+        }
+
+        @media (max-width: 768px) {
+          .review-grid {
+            grid-template-columns: 1fr;
+          }
         }
 
         .review-card {
@@ -92,10 +77,6 @@ export default function Reviews() {
           padding: 24px;
           box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
           transition: transform 0.3s ease;
-        }
-
-        .review-card:hover {
-          transform: translateY(-5px);
         }
 
         .review-type {
@@ -121,56 +102,11 @@ export default function Reviews() {
         }
 
         .review-rating {
+          display: flex;
+          align-items: center;
+          gap: 4px;
           font-weight: bold;
           color: #e0a800;
-        }
-
-        .review-form {
-          margin-top: 50px;
-          max-width: 500px;
-          margin-left: auto;
-          margin-right: auto;
-          background: #fff;
-          padding: 30px;
-          border-radius: 12px;
-          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-        }
-
-        .review-form h3 {
-          text-align: center;
-          font-family: 'Playfair Display', serif;
-          font-size: 1.8rem;
-          margin-bottom: 20px;
-          color: #4b2e83;
-        }
-
-        .review-form input,
-        .review-form select,
-        .review-form textarea {
-          width: 100%;
-          padding: 10px;
-          margin-bottom: 15px;
-          border: 1px solid #ccc;
-          border-radius: 8px;
-          font-size: 0.95rem;
-          font-family: inherit;
-        }
-
-        .review-form button {
-          width: 100%;
-          padding: 12px;
-          background-color: #4b2e83;
-          color: white;
-          border: none;
-          border-radius: 8px;
-          font-weight: bold;
-          font-size: 1rem;
-          cursor: pointer;
-          transition: background 0.3s ease;
-        }
-
-        .review-form button:hover {
-          background-color: #361c66;
         }
       `}</style>
 
@@ -180,48 +116,26 @@ export default function Reviews() {
 
           <div className="review-grid">
             {reviews.map((review, index) => (
-              <div className="review-card" key={index}>
+              <motion.div
+                className="review-card"
+                key={index}
+                whileHover={{ scale: 1.03 }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+              >
                 <div className="review-type">{review.type} Review</div>
                 <div className="review-name">{review.name}</div>
                 <div className="review-text">“{review.review}”</div>
-                <div className="review-rating">⭐ {review.rating} / 5</div>
-              </div>
+                <div className="review-rating">
+                  {[...Array(Math.floor(review.rating))].map((_, i) => (
+                    <FaStar key={i} />
+                  ))}
+                  {review.rating % 1 !== 0 && <FaStar style={{ opacity: 0.5 }} />} ⭐ {review.rating} / 5
+                </div>
+              </motion.div>
             ))}
           </div>
-
-          {/* Review Form */}
-          <form className="review-form" onSubmit={handleSubmit}>
-            <h3>Share Your Experience</h3>
-            <select name="type" value={newReview.type} onChange={handleChange}>
-              <option value="Resort">Resort</option>
-              <option value="Villa">Villa</option>
-            </select>
-            <input
-              type="text"
-              name="name"
-              placeholder="Your Name"
-              value={newReview.name}
-              onChange={handleChange}
-            />
-            <textarea
-              name="review"
-              placeholder="Write your review..."
-              value={newReview.review}
-              onChange={handleChange}
-              rows="4"
-            />
-            <input
-              type="number"
-              name="rating"
-              placeholder="Rating (0-5)"
-              step="0.1"
-              max="5"
-              min="0"
-              value={newReview.rating}
-              onChange={handleChange}
-            />
-            <button type="submit">Submit Review</button>
-          </form>
         </div>
 
         <Footer />

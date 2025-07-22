@@ -1,97 +1,136 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(window.scrollY);
+
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        // Scrolling Down
+        setIsVisible(false);
+      } else {
+        // Scrolling Up
+        setIsVisible(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
 
   return (
     <>
       <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap');
+
         .navbar {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          background-color: purple;
           position: fixed;
-          top: 3%;
+          top: 2%;
           left: 50%;
           transform: translateX(-50%);
-          width: 65%;
-          height: 60px;
-          color: white;
-          padding: 10px 20px;
-          font-family: 'Segoe UI', sans-serif;
+          width: 70%;
+          height: 65px;
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(12px);
+          border: 1px solid rgba(255, 255, 255, 0.15);
+          border-radius: 16px;
+          padding: 10px 25px;
+          font-family: 'Outfit', sans-serif;
           z-index: 1000;
-          backdrop-filter: blur(5px);
-          box-sizing: border-box;
-          border-radius: 8px;
+          color: white;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+          transition: top 0.3s ease-in-out;
         }
 
-        .logo {
-          display: flex;
-          align-items: center;
-          padding-right: 15px;
+        .navbar.hidden {
+          top: -100px;
         }
 
         .logo img {
-          height: 40px;
-          width: auto;
+          height: 42px;
+          border-radius: 8px;
         }
 
         .nav-links {
           display: flex;
-          gap: 20px;
+          gap: 24px;
           align-items: center;
         }
 
         .nav-links a {
-          color: white;
+          color: black;
           text-decoration: none;
-          font-size: 14px;
-          transition: color 0.3s ease;
+          font-size: 15px;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          position: relative;
+        }
+
+        .nav-links a::after {
+          content: '';
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          width: 0;
+          height: 2px;
+          background-color: #00ffc8;
+          transition: 0.3s ease;
         }
 
         .nav-links a:hover {
-          color: #00ffc8;
+          color: #e90914ff;
+        }
+
+        .nav-links a:hover::after {
+          width: 100%;
         }
 
         .book-now {
-          padding: 6px 12px;
-          background-color: blue;
-          color: black;
+          padding: 8px 16px;
+          background: linear-gradient(150deg, #00ffc8, #000000ff);
+          color: #000;
+          font-weight: 600;
           border-radius: 20px;
-          font-weight: bold;
-          text-decoration: none;
-          transition: background-color 0.3s ease;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .book-now:hover {
-          background-color: #00d6a4;
+          transform: scale(1.05);
+          box-shadow: 0 4px 10px rgba(225, 231, 230, 0.3);
         }
 
         .hamburger {
           display: none;
           flex-direction: column;
           cursor: pointer;
+          z-index: 2001;
         }
 
         .hamburger div {
           width: 25px;
           height: 3px;
           background-color: white;
-          margin: 3px 0;
+          margin: 4px 0;
+          border-radius: 2px;
         }
 
         @media (max-width: 768px) {
           .navbar {
-            width: 100%;
-            left: 0;
-            transform: none;
+            width: 90%;
             top: 0;
-            border-radius: 0;
-            padding: 10px 15px;
+            left: 5%;
+            transform: none;
+            border-radius: 0 0 16px 16px;
           }
 
           .hamburger {
@@ -99,26 +138,36 @@ export default function Navbar() {
           }
 
           .nav-links {
-            display: ${isOpen ? 'flex' : 'none'};
-            flex-direction: column;
             position: absolute;
-            top: 60px;
+            top: 65px;
             left: 0;
             width: 100%;
+            flex-direction: column;
             background-color: rgba(0, 0, 0, 0.9);
             padding: 20px 0;
-            gap: 15px;
-            text-align: center;
-            z-index: 999;
+            display: ${isOpen ? 'flex' : 'none'};
+            z-index: 2000;
+            animation: slideDown 0.3s ease-in-out;
           }
 
           .book-now {
             margin-top: 10px;
           }
+
+          @keyframes slideDown {
+            from {
+              opacity: 0;
+              transform: translateY(-10%);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
         }
       `}</style>
 
-      <nav className="navbar">
+      <nav className={`navbar ${isVisible ? '' : 'hidden'}`}>
         <div className="logo">
           <img
             src="https://plus.unsplash.com/premium_photo-1668902219322-08c0b1f3c12b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVzb3J0JTIwbG9nb3xlbnwwfHwwfHx8MA%3D%3D"

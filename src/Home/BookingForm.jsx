@@ -11,23 +11,22 @@ export default function BookingForm() {
     checkIn: '',
     checkOut: '',
     guests: 1,
-    idProof: null,
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const message = `*Booking Request*\n
-Type: ${formData.bookingType}
-Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Address: ${formData.address}
-Check-In: ${formData.checkIn}
-Check-Out: ${formData.checkOut}
-Guests: ${formData.guests}`;
+*Type:* ${formData.bookingType}
+*Name:* ${formData.name}
+*Email:* ${formData.email}
+*Phone:* ${formData.phone}
+*Address:* ${formData.address}
+*Check-In:* ${formData.checkIn}
+*Check-Out:* ${formData.checkOut}
+*Guests:* ${formData.guests}`;
 
-    const whatsappNumber = '9762979477'; // ✅ Replace with your real number if needed
+    const whatsappNumber = '919762979477';
     const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
 
     window.open(url, '_blank');
@@ -184,16 +183,6 @@ Guests: ${formData.guests}`;
               </div>
 
               <div className="form-group">
-                <label>ID Proof (Aadhaar, Passport, etc.)</label>
-                <input
-                  type="file"
-                  accept=".jpg,.jpeg,.png,.pdf"
-                  onChange={(e) => setFormData({ ...formData, idProof: e.target.files[0] })}
-                  required
-                />
-              </div>
-
-              <div className="form-group">
                 <label>Check-In Date</label>
                 <input
                   type="date"
@@ -234,7 +223,7 @@ Guests: ${formData.guests}`;
           </div>
         </div>
 
-        <Footer />
+        <Footer/>
       </div>
     </>
   );

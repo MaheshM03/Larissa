@@ -1,23 +1,14 @@
-import React, { useEffect } from 'react';
-import 'aos/dist/aos.css';
-import AOS from 'aos';
+import React from 'react';
+import { motion } from 'framer-motion';
 
 export default function ActivityCards() {
-  useEffect(() => {
-    AOS.init({ duration: 1000, once: true });
-  }, []);
-
   const activities = [
     {
       title: 'Luxury Villa Spa',
       description: 'Relax with premium spa treatments in your villa.',
       image: 'https://plus.unsplash.com/premium_photo-1683134297492-cce5fc6dae31?w=500',
     },
-    {
-      title: 'Sunset Yoga Sessions',
-      description: 'Rejuvenate your soul with sunset yoga by the beach.',
-      image: 'https://media.istockphoto.com/id/485387392/photo/warrior-pose-from-yoga.webp?a=1&b=1&s=612x612&w=0&k=20&c=PqZ6j4aiilka8qEq7UUng89WA4koAsAbi6UGvnL8b1k=',
-    },
+   
     {
       title: 'Wine Tasting Tour',
       description: 'Enjoy the taste of Nashik’s finest wines.',
@@ -50,41 +41,44 @@ export default function ActivityCards() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap');
 
+        .section-title {
+          text-align: center;
+          font-family: 'Playfair Display', serif;
+          font-size: 2.4rem;
+          margin-top: 100px;
+          margin-bottom: 30px;
+          color: #3c2a21;
+        }
+
         .card-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-          gap: 36px;
-          padding: 60px 40px;
-          background-color: #f4f1ec;
+          gap: 32px;
+          padding: 0 40px 60px;
+          background-color:white;
         }
 
         .activity-card {
           background: #fff;
           border-radius: 18px;
           overflow: hidden;
-          box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
           transition: transform 0.3s ease, box-shadow 0.3s ease;
-          margin-top:40px;
         }
 
         .activity-card:hover {
-          transform: translateY(-6px);
-          box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+          transform: translateY(-5px);
+          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15);
         }
 
         .activity-card img {
           width: 100%;
           height: 180px;
           object-fit: cover;
-          transition: transform 0.4s ease;
-        }
-
-        .activity-card:hover img {
-          transform: scale(1.05);
         }
 
         .card-content {
-          padding: 18px;
+          padding: 20px;
         }
 
         .card-content h3 {
@@ -107,43 +101,48 @@ export default function ActivityCards() {
           border: none;
           padding: 10px 20px;
           border-radius: 25px;
-          font-family: 'Open Sans', sans-serif;
           font-size: 0.9rem;
           cursor: pointer;
-          transition: background 0.3s ease, box-shadow 0.3s ease;
+          transition: background 0.3s ease;
         }
 
         .card-content button:hover {
           background: #8c6d4f;
-          box-shadow: 0 0 10px rgba(176, 137, 104, 0.4);
         }
 
         @media (max-width: 480px) {
-          .card-content h3 {
-            font-size: 1.05rem;
-          }
-
-          .card-content p {
-            font-size: 0.88rem;
-          }
-
-          .card-content button {
-            font-size: 0.85rem;
-            padding: 8px 16px;
+          .section-title {
+            font-size: 1.8rem;
+            margin-top: 60px;
           }
         }
       `}</style>
 
+      <motion.h2
+        className="section-title"
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        La Galerie des Activités
+      </motion.h2>
+
       <div className="card-grid">
         {activities.map((activity, index) => (
-          <div className="activity-card" data-aos="fade-up" key={index}>
+          <motion.div
+            key={index}
+            className="activity-card"
+            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 50 }}
+            transition={{ duration: 0.6, delay: index * 0.1 }}
+          >
             <img src={activity.image} alt={activity.title} />
             <div className="card-content">
               <h3>{activity.title}</h3>
               <p>{activity.description}</p>
               <button>Book Now</button>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </>

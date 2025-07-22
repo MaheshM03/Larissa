@@ -4,7 +4,7 @@ import { FaFacebookF, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 export default function Footer() {
   const navItems = [
     { name: 'Home', href: '/' },
-    { name: 'Activities', href: '/activities' },
+    { name: 'Activities', href: '/Activities' },
     { name: 'Gallery', href: '/gallery' },
     { name: 'Amenities', href: '/amenities' },
     { name: 'Reviews', href: '/reviews' },

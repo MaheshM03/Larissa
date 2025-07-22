@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Footer from './Footer';
+import { motion } from 'framer-motion';
 
 export default function Gallery() {
   const allImages = [
@@ -59,6 +60,10 @@ export default function Gallery() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Open+Sans&display=swap');
 
+        body {
+          overflow-x: hidden;
+        }
+
         .page-wrapper {
           font-family: 'Open Sans', sans-serif;
           background-color: #f4f1ec;
@@ -78,7 +83,7 @@ export default function Gallery() {
           text-align: center;
           font-family: 'Playfair Display', serif;
           font-size: 2.5rem;
-          margin-bottom: 20px;
+          margin: 60px 0 20px;
           color: #3d2e2e;
         }
 
@@ -109,23 +114,17 @@ export default function Gallery() {
 
         .horizontal-scroll {
           display: flex;
-          overflow-x: auto;
+          flex-wrap: wrap;
           gap: 20px;
           padding-bottom: 20px;
-          scroll-snap-type: x mandatory;
-        }
-
-        .horizontal-scroll::-webkit-scrollbar {
-          display: none;
+          justify-content: center;
         }
 
         .gallery-item {
-          flex: 0 0 auto;
           width: 300px;
           border-radius: 14px;
           background: #fff;
           box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-          scroll-snap-align: start;
           cursor: pointer;
           transition: transform 0.3s ease;
         }
@@ -203,13 +202,21 @@ export default function Gallery() {
             ))}
           </div>
 
-          {/* Horizontal Scroll Gallery */}
+          {/* Gallery Grid */}
           <div className="horizontal-scroll">
             {filteredImages.map((img, idx) => (
-              <div className="gallery-item" key={idx} onClick={() => setLightboxImage(img.src)}>
+              <motion.div
+                className="gallery-item"
+                key={idx}
+                onClick={() => setLightboxImage(img.src)}
+                whileHover={{ scale: 1.05 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+              >
                 <img src={img.src} alt={img.caption} className="gallery-img" />
                 <div className="caption">{img.caption}</div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

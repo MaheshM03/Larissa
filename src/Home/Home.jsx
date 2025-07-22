@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
+import Footer from './Footer';
 import { FaWhatsapp } from 'react-icons/fa';
 
 export default function Home() {
@@ -31,41 +32,47 @@ export default function Home() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
-    }, 3500);
+    }, 4000);
     return () => clearInterval(timer);
   }, [slides.length]);
 
   return (
     <>
       <Navbar />
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
       <style>{`
-        html, body {
+        * {
+          box-sizing: border-box;
+        }
+
+        body {
           margin: 0;
-          padding: 0;
-          overflow: hidden;
-          width: 100%;
-          height: 100%;
-          font-family: 'Georgia', serif;
-          background-color: #f3f3f3;
+          font-family: 'Poppins', sans-serif;
+          background-color: #f9f9f9;
         }
 
         .slider-container {
           position: relative;
-          width: 100vw;
+          width: 100%;
           height: 100vh;
           overflow: hidden;
         }
 
+        .slide-wrapper {
+          position: relative;
+          width: 100%;
+          height: 100%;
+        }
+
         .slide {
           position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
+          top: 0;
+          left: 0;
           width: 100%;
           height: 100%;
           object-fit: cover;
           opacity: 0;
-          transition: opacity 1.2s ease-in-out;
+          transition: opacity 1s ease-in-out;
           z-index: 0;
         }
 
@@ -80,47 +87,51 @@ export default function Home() {
           left: 0;
           width: 100%;
           height: 100%;
-          color: white;
+          color: #fff;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
+          background: linear-gradient(to top, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.2));
           text-align: center;
-          background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
-          z-index: 2;
           padding: 0 20px;
+          z-index: 2;
+          animation: fadeIn 1s ease;
         }
 
         .fixed-text h1 {
-          font-size: 3.8rem;
-          text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-          margin-bottom: 10px;
+          font-size: 3.5rem;
+          font-weight: 600;
+          text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6);
+          margin: 0 0 10px;
         }
 
         .fixed-text p {
-          font-size: 1.5rem;
-          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+          font-size: 1.4rem;
+          margin: 0;
+          text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
         }
 
         .button-group {
           margin-top: 30px;
-          display: flex;
-          gap: 20px;
         }
 
         .know-btn {
-          padding: 12px 28px;
-          background-color: #006699;
+          padding: 12px 30px;
+          background: linear-gradient(135deg, #007acc, #005999);
           color: white;
-          text-decoration: none;
+          border: none;
           border-radius: 30px;
-          font-weight: bold;
           font-size: 1rem;
-          transition: background-color 0.3s ease;
+          font-weight: bold;
+          text-decoration: none;
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+          transition: all 0.3s ease;
         }
 
         .know-btn:hover {
-          background-color: #004f7a;
+          transform: translateY(-2px);
+          background: linear-gradient(135deg, #005999, #003f66);
         }
 
         .whatsapp-float {
@@ -130,19 +141,24 @@ export default function Home() {
           background-color: #25D366;
           color: white;
           border-radius: 50%;
-          width: 55px;
-          height: 55px;
+          width: 60px;
+          height: 60px;
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 26px;
-          z-index: 9999;
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+          font-size: 28px;
+          z-index: 999;
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
           transition: transform 0.3s ease;
         }
 
         .whatsapp-float:hover {
           transform: scale(1.1);
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 768px) {
@@ -154,28 +170,30 @@ export default function Home() {
             font-size: 1.1rem;
           }
 
-          .button-group {
-            flex-direction: column;
-            gap: 15px;
+          .know-btn {
+            font-size: 0.9rem;
+            padding: 10px 24px;
           }
         }
       `}</style>
 
       <div className="slider-container">
-        {slides.map((slide, index) => (
-          <img
-            key={index}
-            src={slide.image}
-            alt={`Slide ${index + 1}`}
-            className={`slide ${index === current ? 'active' : ''}`}
-          />
-        ))}
+        <div className="slide-wrapper">
+          {slides.map((slide, index) => (
+            <img
+              key={index}
+              src={slide.image}
+              alt={`Slide ${index + 1}`}
+              className={`slide ${index === current ? 'active' : ''}`}
+            />
+          ))}
 
-        <div className="fixed-text">
-          <h1>{slides[current].title}</h1>
-          <p>{slides[current].subtitle}</p>
-          <div className="button-group">
-            <a href="/about" className="know-btn">Learn More</a>
+          <div className="fixed-text">
+            <h1>{slides[current].title}</h1>
+            <p>{slides[current].subtitle}</p>
+            <div className="button-group">
+              <a href="/about" className="know-btn">Learn More</a>
+            </div>
           </div>
         </div>
       </div>
@@ -189,6 +207,8 @@ export default function Home() {
       >
         <FaWhatsapp />
       </a>
+
+      <Footer />
     </>
   );
 }
