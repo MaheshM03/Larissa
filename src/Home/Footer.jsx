@@ -1,15 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { FaFacebookF, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 
 export default function Footer() {
   const navItems = [
-    { name: 'Home', href: '/' },
-    { name: 'Activities', href: '/Activities' },
-    { name: 'Gallery', href: '/gallery' },
-    { name: 'Amenities', href: '/amenities' },
-    { name: 'Reviews', href: '/reviews' },
-    { name: 'About Us', href: '/about' },
-    { name: 'Contact Us', href: '/contact' },
+    { name: 'Home', path: '/' },
+    { name: 'Activities', path: '/activities' },
+    { name: 'Gallery', path: '/gallery' },
+    { name: 'Amenities', path: '/amenities' },
+    { name: 'Reviews', path: '/reviews' },
+    { name: 'About Us', path: '/about' },
+    { name: 'Contact Us', path: '/contact' },
   ];
 
   const scrollToTop = () => {
@@ -124,7 +125,6 @@ export default function Footer() {
       `}</style>
 
       <div className="footer">
-        {/* Back to Top */}
         <button
           className="footer-back-to-top"
           onClick={scrollToTop}
@@ -133,25 +133,20 @@ export default function Footer() {
           ↑
         </button>
 
-        {/* Navigation Links */}
         <div className="footer-nav">
           {navItems.map((item, index) => (
-            <a key={index} href={item.href} className="footer-link">
+            <Link key={index} to={item.path} className="footer-link">
               {item.name}
-            </a>
+            </Link>
           ))}
         </div>
 
-        {/* Social Icons */}
         <div className="footer-social">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
           <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
           <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer"><FaWhatsapp /></a>
         </div>
 
-       
-
-        {/* Copyright */}
         <div className="footer-copyright">
           © {new Date().getFullYear()} Larissa. All rights reserved.
         </div>

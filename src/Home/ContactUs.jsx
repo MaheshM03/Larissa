@@ -136,7 +136,7 @@ export default function ContactUs() {
 
       {/* WhatsApp Quick Contact Button */}
       <a
-        className="whatsapp-btn"
+        className="whatsapp-float"
         href="https://wa.me/919762979477"
         target="_blank"
         rel="noopener noreferrer"
@@ -166,15 +166,15 @@ export default function ContactUs() {
             <p><FaGlobe /> www.larissaresorts.in</p>
           </div>
 
-          <a
-                 href="https://wa.me/9762979477"
-                 target="_blank"
-                 rel="noopener noreferrer"
-                 className="whatsapp-float"
-                 aria-label="Chat on WhatsApp"
-               >
-                 <FaWhatsapp />
-               </a>
+          {/* Google Map centered on 19.99727, 73.79096 */}
+          <iframe
+            className="larissa-map"
+            data-aos="fade-left"
+            src="https://www.google.com/maps?q=19.99727,73.79096&hl=es;z=14&output=embed"
+            allowFullScreen=""
+            loading="lazy"
+            title="Larissa Resort Location"
+          ></iframe>
         </div>
       </motion.div>
 

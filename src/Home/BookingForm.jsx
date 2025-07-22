@@ -13,6 +13,9 @@ export default function BookingForm() {
     guests: 1,
   });
 
+  // Today's date in YYYY-MM-DD format
+  const today = new Date().toISOString().split('T')[0];
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -187,6 +190,7 @@ export default function BookingForm() {
                 <input
                   type="date"
                   name="checkIn"
+                  min={today}
                   value={formData.checkIn}
                   onChange={(e) => setFormData({ ...formData, checkIn: e.target.value })}
                   required
@@ -198,6 +202,7 @@ export default function BookingForm() {
                 <input
                   type="date"
                   name="checkOut"
+                  min={today}
                   value={formData.checkOut}
                   onChange={(e) => setFormData({ ...formData, checkOut: e.target.value })}
                   required
@@ -223,7 +228,7 @@ export default function BookingForm() {
           </div>
         </div>
 
-        <Footer/>
+        <Footer />
       </div>
     </>
   );

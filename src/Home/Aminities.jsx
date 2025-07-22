@@ -52,12 +52,12 @@ export default function Amenities() {
       textAlign: 'center',
       color: '#3c2a21',
       marginBottom: '40px',
-      marginTop:'60px'
+      marginTop: '60px'
     },
     tabs: {
       display: 'flex',
       justifyContent: 'center',
-      marginBottom: '40px',
+      marginBottom: '30px',
       flexWrap: 'wrap',
       gap: '20px'
     },
@@ -74,10 +74,9 @@ export default function Amenities() {
     }),
     grid: {
       display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))',
+      gridTemplateColumns: '1fr 1fr',
       gap: '24px',
-      justifyContent: 'center',
-      alignItems: 'center'
+      marginTop: '30px'
     },
     card: {
       backgroundColor: '#fff',
@@ -85,7 +84,11 @@ export default function Amenities() {
       padding: '24px',
       textAlign: 'center',
       boxShadow: '0 6px 16px rgba(0, 0, 0, 0.1)',
-      transition: 'transform 0.3s ease, box-shadow 0.3s ease'
+      transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+      minHeight: '180px',
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center'
     },
     icon: {
       fontSize: '2.2rem',
@@ -121,6 +124,12 @@ export default function Amenities() {
           box-shadow: 0 14px 30px rgba(0, 0, 0, 0.15);
         }
 
+        @media (max-width: 768px) {
+          .amenity-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+
         @media (max-width: 480px) {
           .amenity-card {
             padding: 20px;
@@ -147,7 +156,7 @@ export default function Amenities() {
             </button>
           </div>
 
-          <div style={styles.grid}>
+          <div className="amenity-grid" style={styles.grid}>
             {activeTab === 'resort'
               ? renderAmenities(resortAmenities)
               : renderAmenities(villaAmenities)}
