@@ -9,7 +9,6 @@ export default function ActivityCards() {
       description: 'Relax with premium spa treatments in your villa.',
       image: 'https://plus.unsplash.com/premium_photo-1683134297492-cce5fc6dae31?w=500',
     },
-   
     {
       title: 'Wine Tasting Tour',
       description: 'Enjoy the taste of Nashik’s finest wines.',
@@ -49,27 +48,30 @@ export default function ActivityCards() {
           margin-top: 100px;
           margin-bottom: 30px;
           color: #3c2a21;
+          padding: 0 20px;
         }
 
         .card-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-          gap: 32px;
-          padding: 0 40px 60px;
-          background-color:white;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 24px;
+          padding: 0 20px 60px;
+          background-color: white;
         }
 
         .activity-card {
           background: #fff;
           border-radius: 18px;
           overflow: hidden;
-          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+          display: flex;
+          flex-direction: column;
           transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .activity-card:hover {
           transform: translateY(-5px);
-          box-shadow: 0 14px 28px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
         }
 
         .activity-card img {
@@ -79,13 +81,17 @@ export default function ActivityCards() {
         }
 
         .card-content {
-          padding: 20px;
+          padding: 18px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          flex-grow: 1;
         }
 
         .card-content h3 {
           font-family: 'Playfair Display', serif;
           font-size: 1.2rem;
-          margin-bottom: 10px;
+          margin-bottom: 8px;
           color: #3d2e2e;
         }
 
@@ -104,6 +110,7 @@ export default function ActivityCards() {
           border-radius: 25px;
           font-size: 0.9rem;
           cursor: pointer;
+          align-self: flex-start;
           transition: background 0.3s ease;
         }
 
@@ -114,7 +121,16 @@ export default function ActivityCards() {
         @media (max-width: 480px) {
           .section-title {
             font-size: 1.8rem;
-            margin-top: 60px;
+            margin-top: 90px;
+          }
+
+          .card-content p {
+            font-size: 0.9rem;
+          }
+
+          .card-content button {
+            padding: 8px 16px;
+            font-size: 0.85rem;
           }
         }
       `}</style>
@@ -146,7 +162,8 @@ export default function ActivityCards() {
           </motion.div>
         ))}
       </div>
-      <Footer/>
+
+      <Footer />
     </>
   );
 }

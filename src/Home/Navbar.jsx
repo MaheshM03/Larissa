@@ -114,6 +114,7 @@ export default function Navbar() {
           flex-direction: column;
           cursor: pointer;
           z-index: 2001;
+         background-color:black;
         }
 
         .hamburger div {
@@ -135,6 +136,7 @@ export default function Navbar() {
 
           .hamburger {
             display: flex;
+            
           }
 
           .nav-links {
