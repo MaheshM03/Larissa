@@ -12,10 +12,8 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > lastScrollY) {
-        // Scrolling Down
         setIsVisible(false);
       } else {
-        // Scrolling Up
         setIsVisible(true);
       }
       setLastScrollY(window.scrollY);
@@ -114,7 +112,9 @@ export default function Navbar() {
           flex-direction: column;
           cursor: pointer;
           z-index: 2001;
-         background-color:black;
+          background-color: black;
+          padding: 4px;
+          border-radius: 6px;
         }
 
         .hamburger div {
@@ -127,17 +127,22 @@ export default function Navbar() {
 
         @media (max-width: 768px) {
           .navbar {
-            width: 90%;
+            width: 100%;
+            left: 0;
             top: 0;
-            left: 5%;
             transform: none;
-            border-radius: 0 0 16px 16px;
+            border-radius: 0;
+            justify-content: space-between;
+            padding: 10px 15px;
           }
 
           .hamburger {
-            display: flex;
-            
-          }
+  display: flex;
+  background-color: black;
+  padding: 4px;
+  border-radius: 6px;
+  margin-left: 10px; 
+}
 
           .nav-links {
             position: absolute;
@@ -150,6 +155,12 @@ export default function Navbar() {
             display: ${isOpen ? 'flex' : 'none'};
             z-index: 2000;
             animation: slideDown 0.3s ease-in-out;
+          }
+
+          .nav-links a {
+            color: black;
+            font-size: 16px;
+            padding: 8px 0;
           }
 
           .book-now {
@@ -172,7 +183,7 @@ export default function Navbar() {
       <nav className={`navbar ${isVisible ? '' : 'hidden'}`}>
         <div className="logo">
           <img
-            src="https://plus.unsplash.com/premium_photo-1668902219322-08c0b1f3c12b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cmVzb3J0JTIwbG9nb3xlbnwwfHwwfHx8MA%3D%3D"
+            src="https://plus.unsplash.com/premium_photo-1668902219322-08c0b1f3c12b?w=500&auto=format&fit=crop&q=60"
             alt="Logo"
           />
         </div>

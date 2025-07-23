@@ -17,11 +17,13 @@ export default function ContactUs() {
 
         body {
           background: url('https://www.transparenttextures.com/patterns/greek-vine.png');
+          margin: 0;
+          padding: 0;
         }
 
         .larissa-card {
           max-width: 1100px;
-          margin: 120px auto 60px;
+          margin: 100px auto 60px;
           border-radius: 16px;
           overflow: hidden;
           box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
@@ -33,30 +35,30 @@ export default function ContactUs() {
           background: linear-gradient(135deg, #37474f, #212121);
           color: white;
           text-align: center;
-          padding: 60px 30px 50px;
+          padding: 50px 20px 40px;
         }
 
         .larissa-logo {
-          font-size: 72px;
-          margin-bottom: 20px;
+          font-size: 60px;
+          margin-bottom: 15px;
         }
 
         .larissa-brand-name {
           font-family: 'Playfair Display', serif;
-          font-size: 44px;
-          letter-spacing: 5px;
+          font-size: 36px;
+          letter-spacing: 4px;
           color: #ffffff;
         }
 
         .larissa-pattern {
-          width: 90px;
+          width: 80px;
           height: 3px;
           background: #ffffff;
-          margin: 22px auto;
+          margin: 18px auto;
         }
 
         .larissa-subtitle {
-          font-size: 15px;
+          font-size: 14px;
           margin-top: 10px;
           opacity: 0.85;
         }
@@ -78,14 +80,14 @@ export default function ContactUs() {
           margin: 18px 0;
           display: flex;
           align-items: flex-start;
-          font-size: 16px;
+          font-size: 15px;
           line-height: 1.6;
         }
 
         .larissa-contact svg {
-          margin-right: 12px;
+          margin-right: 10px;
           color: #4a2c8c;
-          min-width: 20px;
+          min-width: 18px;
           margin-top: 4px;
         }
 
@@ -96,6 +98,11 @@ export default function ContactUs() {
         }
 
         @media (max-width: 768px) {
+          .larissa-card {
+            margin:105px 15px 30px;
+            
+          }
+
           .larissa-content-row {
             flex-direction: column;
           }
@@ -103,11 +110,19 @@ export default function ContactUs() {
           .larissa-contact,
           .larissa-map {
             width: 100%;
-            padding: 30px;
+            padding: 25px;
           }
 
           .larissa-map {
             height: 300px;
+          }
+
+          .larissa-brand-name {
+            font-size: 28px;
+          }
+
+          .larissa-logo {
+            font-size: 48px;
           }
         }
 
@@ -134,7 +149,7 @@ export default function ContactUs() {
         }
       `}</style>
 
-      {/* WhatsApp Quick Contact Button */}
+      {/* WhatsApp Floating Button */}
       <a
         className="whatsapp-float"
         href="https://wa.me/919762979477"
@@ -166,7 +181,6 @@ export default function ContactUs() {
             <p><FaGlobe /> www.larissaresorts.in</p>
           </div>
 
-          {/* Google Map centered on 19.99727, 73.79096 */}
           <iframe
             className="larissa-map"
             data-aos="fade-left"
