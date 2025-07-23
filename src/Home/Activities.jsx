@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import Footer from './Footer';
 
 export default function ActivityCards() {
   const activities = [
@@ -145,6 +146,7 @@ export default function ActivityCards() {
           </motion.div>
         ))}
       </div>
+      <Footer/>
     </>
   );
 }

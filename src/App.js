@@ -1,9 +1,8 @@
-import React from 'react';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { HashRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 import Navbar from './Home/Navbar';
 import Home from './Home/Home';
-import AboutUs from './Home/AboutUs';
 import Gallery from './Home/Gallery';
 import ContactUs from './Home/ContactUs';
 import BookingForm from './Home/BookingForm';
@@ -11,10 +10,23 @@ import Activities from './Home/Activities';
 import Footer from './Home/Footer';
 import Reviews from './Home/Reviews';
 import Amenities from './Home/Aminities';
+import AboutUs from './Home/AboutUs';
+
+// ScrollToTop component inside App file
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [pathname]);
+
+  return null;
+}
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />

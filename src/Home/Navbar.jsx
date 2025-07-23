@@ -143,7 +143,7 @@ export default function Navbar() {
             left: 0;
             width: 100%;
             flex-direction: column;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: white;
             padding: 20px 0;
             display: ${isOpen ? 'flex' : 'none'};
             z-index: 2000;
