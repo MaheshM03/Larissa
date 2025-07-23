@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Larissa/static/css/main.ab85b8a4.css",
-    "main.js": "/Larissa/static/js/main.e85388f4.js",
+    "main.js": "/Larissa/static/js/main.f665cd42.js",
     "static/js/453.faf3f9a3.chunk.js": "/Larissa/static/js/453.faf3f9a3.chunk.js",
     "index.html": "/Larissa/index.html",
     "main.ab85b8a4.css.map": "/Larissa/static/css/main.ab85b8a4.css.map",
-    "main.e85388f4.js.map": "/Larissa/static/js/main.e85388f4.js.map",
+    "main.f665cd42.js.map": "/Larissa/static/js/main.f665cd42.js.map",
     "453.faf3f9a3.chunk.js.map": "/Larissa/static/js/453.faf3f9a3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.ab85b8a4.css",
-    "static/js/main.e85388f4.js"
+    "static/js/main.f665cd42.js"
   ]
 }
