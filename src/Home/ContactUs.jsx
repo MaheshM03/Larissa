@@ -23,7 +23,7 @@ export default function ContactUs() {
 
         .larissa-card {
           max-width: 1100px;
-          margin: 100px auto 60px;
+          margin: 110px auto 60px;
           border-radius: 16px;
           overflow: hidden;
           box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
@@ -35,7 +35,7 @@ export default function ContactUs() {
           background: linear-gradient(135deg, #37474f, #212121);
           color: white;
           text-align: center;
-          padding: 50px 20px 40px;
+          padding: 40px 20px 40px;
         }
 
         .larissa-logo {
@@ -184,7 +184,7 @@ export default function ContactUs() {
           <iframe
             className="larissa-map"
             data-aos="fade-left"
-            src="https://www.google.com/maps?q=19.99727,73.79096&hl=es;z=14&output=embed"
+            src="https://www.google.com/maps?q=20.0296,73.7156&hl=es;z=14&output=embed"
             allowFullScreen=""
             loading="lazy"
             title="Larissa Resort Location"
