@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { FaStar } from 'react-icons/fa';
 
 export default function Reviews() {
-  const [reviews, setReviews] = useState([
+  const [reviews] = useState([
     {
       type: 'Resort',
       name: 'Aarav Sharma',
